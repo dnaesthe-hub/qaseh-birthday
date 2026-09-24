@@ -427,10 +427,54 @@ h2{
   animation:pulse 2s infinite;
 }
 
-@keyframes pulse{
-  50%{
-    box-shadow:0 10px 30px #ff3f8e77;
-  }
+#music{
+  position:fixed;
+
+  right:16px;
+  top:-80px;
+
+  z-index:200;
+
+  width:58px;
+  height:58px;
+
+  border:0;
+  border-radius:50%;
+
+  background:var(--hot);
+  color:#fff;
+
+  font-size:23px;
+
+  box-shadow:0 10px 25px #ff3f8e55;
+
+  cursor:grab;
+
+  animation:none;
+
+  touch-action:none;
+
+  user-select:none;
+  -webkit-user-select:none;
+
+  transition:
+    top .65s cubic-bezier(.2,1.5,.4,1),
+    box-shadow .2s;
+}
+
+#music.dropped{
+  top:90px;
+}
+
+#music.dragging{
+  cursor:grabbing;
+  animation:none;
+  transform:scale(1.08);
+  box-shadow:0 15px 35px #ff3f8e77;
+}
+
+#music:hover{
+  transform:scale(1.05);
 }
 
 #ytplayer{
@@ -1917,6 +1961,57 @@ function toggleMusic(){
 
   initAudio();
 
+  const musicButton =
+    document.getElementById("music");
+
+  /*
+    First tap:
+    Drop the music button onto the page.
+  */
+
+  if(!musicButton.classList.contains("dropped")){
+
+    musicButton.classList.add("dropped");
+
+    /*
+      Give the drop animation time to finish,
+      then start the music.
+    */
+
+    setTimeout(()=>{
+
+      if(
+        !ytReady ||
+        YT_VIDEO_ID==="YOUR_VIDEO_ID"
+      ){
+
+        showToast(
+          "Paste your YouTube VIDEO ID into YT_VIDEO_ID first 🎵"
+        );
+
+        return;
+
+      }
+
+      player.playVideo();
+
+      musicButton.textContent="⏸";
+
+      showToast(
+        "music mode: ON 🎶"
+      );
+
+    },650);
+
+    return;
+  }
+
+
+  /*
+    Normal tap after the button has dropped:
+    Play / pause.
+  */
+
   if(
     !ytReady ||
     YT_VIDEO_ID==="YOUR_VIDEO_ID"
@@ -1930,24 +2025,20 @@ function toggleMusic(){
 
   }
 
-  const state=
+  const state =
     player.getPlayerState();
 
   if(state===1){
 
     player.pauseVideo();
 
-    document
-      .getElementById("music")
-      .textContent="▶";
+    musicButton.textContent="▶";
 
   }else{
 
     player.playVideo();
 
-    document
-      .getElementById("music")
-      .textContent="⏸";
+    musicButton.textContent="⏸";
 
     showToast(
       "music mode: ON 🎶"
@@ -1957,7 +2048,191 @@ function toggleMusic(){
 
 }
 
+/* =====================================================
+DRAGGABLE MUSIC BUTTON
+===================================================== */
 
+const musicButton =
+  document.getElementById("music");
+
+let draggingMusic = false;
+
+let dragStartX = 0;
+let dragStartY = 0;
+
+let buttonStartX = 0;
+let buttonStartY = 0;
+
+let didDrag = false;
+
+
+/*
+  Start holding the music button
+*/
+
+musicButton.addEventListener(
+  "pointerdown",
+  function(e){
+
+    /*
+      If this is the very first tap,
+      let toggleMusic() handle the drop.
+    */
+
+    if(
+      !musicButton.classList.contains("dropped")
+    ){
+
+      return;
+
+    }
+
+    draggingMusic = true;
+    didDrag = false;
+
+    musicButton.setPointerCapture(e.pointerId);
+
+    const rect =
+      musicButton.getBoundingClientRect();
+
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+
+    buttonStartX = rect.left;
+    buttonStartY = rect.top;
+
+    musicButton.classList.add("dragging");
+
+    e.preventDefault();
+
+  }
+);
+
+
+/*
+  Move while holding
+*/
+
+musicButton.addEventListener(
+  "pointermove",
+  function(e){
+
+    if(!draggingMusic)
+      return;
+
+    const dx =
+      e.clientX - dragStartX;
+
+    const dy =
+      e.clientY - dragStartY;
+
+    if(
+      Math.abs(dx)>5 ||
+      Math.abs(dy)>5
+    ){
+
+      didDrag = true;
+
+    }
+
+    let newX =
+      buttonStartX + dx;
+
+    let newY =
+      buttonStartY + dy;
+
+
+    /*
+      Keep button inside screen
+    */
+
+    const margin = 5;
+
+    newX =
+      Math.max(
+        margin,
+        Math.min(
+          window.innerWidth -
+          musicButton.offsetWidth -
+          margin,
+          newX
+        )
+      );
+
+    newY =
+      Math.max(
+        margin,
+        Math.min(
+          window.innerHeight -
+          musicButton.offsetHeight -
+          margin,
+          newY
+        )
+      );
+
+
+    musicButton.style.left =
+      newX + "px";
+
+    musicButton.style.top =
+      newY + "px";
+
+    musicButton.style.right =
+      "auto";
+
+  }
+);
+
+
+/*
+  Release
+*/
+
+musicButton.addEventListener(
+  "pointerup",
+  function(e){
+
+    if(!draggingMusic)
+      return;
+
+    draggingMusic = false;
+
+    musicButton.classList.remove("dragging");
+
+    /*
+      Remember that it was dragged.
+      This prevents the same touch from
+      accidentally triggering play/pause.
+    */
+
+    setTimeout(()=>{
+      didDrag = false;
+    },50);
+
+  }
+);
+
+
+/*
+  Prevent the normal click from firing
+  after dragging.
+*/
+
+musicButton.addEventListener(
+  "click",
+  function(e){
+
+    if(didDrag){
+
+      e.preventDefault();
+      e.stopPropagation();
+
+    }
+
+  },
+  true
+);
+  
 /* =====================================================
 BRAINROT
 ===================================================== */
@@ -2038,7 +2313,7 @@ const quizData = [
       "CEO 🧑‍💼",
       "Aye 🐈 "
     ],
-    c: 0
+    c: 2
   },
 
   {
@@ -2048,7 +2323,7 @@ const quizData = [
       "🌷🌷🌷",
       "🧱🧱🧱"
     ],
-    c: 0
+    c: 1
   }
 
 ];
