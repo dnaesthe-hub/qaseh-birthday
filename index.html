@@ -404,34 +404,13 @@ h2{
 
 /* ================= MUSIC ================= */
 
-#music{
-  position:fixed;
-  right:16px;
-  bottom:16px;
-  z-index:70;
-
-  width:58px;
-  height:58px;
-
-  border:0;
-  border-radius:50%;
-
-  background:var(--hot);
-  color:#fff;
-
-  font-size:23px;
-
-  box-shadow:0 10px 25px #ff3f8e55;
-  cursor:pointer;
-
-  animation:pulse 2s infinite;
-}
+/* ================= MUSIC ================= */
 
 #music{
   position:fixed;
 
   right:16px;
-  top:-80px;
+  top:16px;
 
   z-index:200;
 
@@ -459,6 +438,8 @@ h2{
 
   transition:
     top .65s cubic-bezier(.2,1.5,.4,1),
+    right .2s,
+    left .2s,
     box-shadow .2s;
 }
 
@@ -468,23 +449,11 @@ h2{
 
 #music.dragging{
   cursor:grabbing;
-  animation:none;
-  transform:scale(1.08);
   box-shadow:0 15px 35px #ff3f8e77;
 }
 
 #music:hover{
   transform:scale(1.05);
-}
-
-#ytplayer{
-  position:fixed;
-  left:-9999px;
-  top:-9999px;
-  width:200px;
-  height:200px;
-  opacity:0;
-  pointer-events:none;
 }
 
 /* ================= PAGE SYSTEM ================= */
@@ -2343,6 +2312,10 @@ function renderQuiz(){
   const d =
     quizData[qi];
 
+  if(!d){
+    return;
+  }
+
   quizLocked = false;
 
   question.innerHTML = `
@@ -2356,21 +2329,20 @@ function renderQuiz(){
     const button =
       document.createElement("button");
 
-    button.className = "cta";
+    button.type = "button";
 
-    /*
-      IMPORTANT:
-      Every answer has EXACTLY the same
-      appearance before being clicked.
-    */
+    button.className = "cta";
 
     button.textContent = answer;
 
-    button.onclick = function(){
+    button.addEventListener("click", function(e){
+
+      e.preventDefault();
+      e.stopPropagation();
 
       answerQuiz(index,button);
 
-    };
+    });
 
     answers.appendChild(button);
 
@@ -2381,11 +2353,12 @@ function renderQuiz(){
 
 function answerQuiz(selected,button){
 
-  if(quizLocked)
+  if(quizLocked){
     return;
+  }
 
-  const correct =
-    quizData[qi].c;
+  const currentQuestion = quizData[qi];
+  const correct = currentQuestion.c;
 
   if(selected === correct){
 
@@ -2394,10 +2367,13 @@ function answerQuiz(selected,button){
     successSound();
 
     button.textContent =
-      "✅ " + quizData[qi].a[selected];
+      "✅ " + currentQuestion.a[selected];
 
     button.style.background =
       "#5bc47a";
+
+    button.style.pointerEvents =
+      "none";
 
     showToast(
       "CORRECT! Qaseh lore knowledge 📈📈📈"
@@ -2435,7 +2411,6 @@ function answerQuiz(selected,button){
         `;
 
         return;
-
       }
 
       renderQuiz();
@@ -2443,11 +2418,6 @@ function answerQuiz(selected,button){
     },700);
 
   }else{
-
-    /*
-      Wrong answer.
-      We DON'T reveal which one is correct.
-    */
 
     button.animate(
       [
@@ -2470,10 +2440,7 @@ function answerQuiz(selected,button){
   }
 
 }
-
-
-renderQuiz();
-
+  renderQuiz();
 </script>
 
 </body>
