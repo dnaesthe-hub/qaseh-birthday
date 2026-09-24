@@ -372,6 +372,13 @@ h2{
   text-align:center;
 }
 
+  .memory-photo{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:18px;
+  display:block;
+}
 /* ================= MESSAGE ================= */
 
 .message.locked{
@@ -634,6 +641,35 @@ h2{
   }
 }
 
+  /* ================= QUIZ CONFETTI ================= */
+
+.quiz-confetti{
+  position:fixed;
+  top:-30px;
+  z-index:500;
+  pointer-events:none;
+  font-size:24px;
+  animation:quizConfettiFall 2.5s ease-out forwards;
+}
+
+@keyframes quizConfettiFall{
+  0%{
+    transform:
+      translateY(0)
+      rotate(0deg)
+      scale(1);
+    opacity:1;
+  }
+
+  100%{
+    transform:
+      translateY(110vh)
+      translateX(var(--drift))
+      rotate(720deg)
+      scale(.7);
+    opacity:0;
+  }
+}
 /* ================= REVEAL ================= */
 
 .reveal{
@@ -919,48 +955,58 @@ PAGE 2
 
         <div class="photo">
 
-          QASEH PIC
+              <b>QASEH PIC</b>
 
-          <br>
+    <br><br>
 
-          📷
+    <img
+      src="8e46e670-272a-4c24-8ecc-41c76320bbfe.jpeg"
+      alt="Qaseh"
+      class="memory-photo"
+    >
 
-          <br>
+    <br>
 
-          <span class="small">
-            TEST...
-          </span>
+    <span class="small">
+      A precious memory 💗
+    </span>
 
-        </div>
+  </div>
 
-      </div>
+</div>
 
 
-      <div class="card">
+<div class="card">
 
-        <h3>
-          🐈 Aye appreciation slot
-        </h3>
+  <h3>
+    🐈 Aye appreciation slot
+  </h3>
 
-        <div class="photo">
+  <div class="photo">
 
-          DAHLIA PIC
+    <b>DAHLIA PIC</b>
 
-          <br>
+    <br><br>
 
-          🐱🌷
+    <img
+      src="74c97735-4ac5-458e-b155-826ae8690516.jpeg"
+      alt="Dahlia"
+      class="memory-photo"
+    >
 
-          <br>
+    <br>
 
-          <span class="small">
-            Sayang Aye.
-          </span>
+    🐱🌷
 
-        </div>
+    <br>
 
-      </div>
+    <span class="small">
+      Sayang Aye.
+    </span>
 
-    </div>
+  </div>
+
+</div>
 
   </section>
 
@@ -2534,7 +2580,56 @@ function openLoot(){
 /* =====================================================
 QUIZ
 ===================================================== */
+function quizConfetti(){
 
+  const emojis = [
+    "🎉",
+    "✨",
+    "💗",
+    "🌷",
+    "🎊",
+    "🐈",
+    "💐"
+  ];
+
+  for(let i=0;i<70;i++){
+
+    const confetti =
+      document.createElement("span");
+
+    confetti.className =
+      "quiz-confetti";
+
+    confetti.textContent =
+      emojis[
+        Math.floor(
+          Math.random()*emojis.length
+        )
+      ];
+
+    confetti.style.left =
+      Math.random()*100 + "vw";
+
+    confetti.style.animationDelay =
+      Math.random()*0.8 + "s";
+
+    confetti.style.animationDuration =
+      (1.8 + Math.random()*1.5) + "s";
+
+    confetti.style.setProperty(
+      "--drift",
+      (Math.random()*300-150) + "px"
+    );
+
+    document.body.appendChild(confetti);
+
+    setTimeout(()=>{
+      confetti.remove();
+    },4000);
+
+  }
+
+}
 /* =====================================================
 QASEH LORE QUIZ
 ===================================================== */
@@ -2661,7 +2756,10 @@ function answerQuiz(selected,button){
 
       if(qi >= quizData.length){
 
-        document.getElementById("quiz").innerHTML = `
+  // 🎉 CONFETTI CELEBRATION
+  quizConfetti();
+
+  document.getElementById("quiz").innerHTML = `
 
           <div style="text-align:center">
 
