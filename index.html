@@ -137,7 +137,7 @@ footer{text-align:center;opacity:.65;padding:30px}
     <p class="small">A highly scientific collection of things that are objectively part of the Qaseh cinematic universe.</p>
     <div class="grid">
       <div class="card"><h3>🌷 Lily lover</h3><p>Flowers? Yes. Pink? Yes. Dramatic little flowers everywhere? Yes.</p></div>
-      <div class="card"><h3>🐈 Dahlia / Aye</h3><p>The real celebrity. Every Dahlia photo is automatically important evidence.</p></div>
+      <div class="card"><h3>🐈 Dahlia / Aye</h3><p>Aye is a celebrity. Buktinya awak selalu ambil gambar dia.</p></div>
       <div class="card"><h3>🧠 Certified Gen Z</h3><p>Brainrot levels: MENAKUTKAN. Sweetness levels: INFINITE.</p></div>
     </div>
   </section>
@@ -147,7 +147,7 @@ footer{text-align:center;opacity:.65;padding:30px}
       <h2>🎮 Catch the Lily: A Very Serious Game!</h2>
       <p>Catch <b>10 lilies</b>. Tak dapat tangkap? Noob. 😭<br>Hint: the lily is running because it has places to be.</p>
       <div class="score">Score: <span id="score">0</span>/10</div>
-      <div id="gameArea"><div style="padding-top:145px;opacity:.55" id="gameHint">press START and become a professional lily catcher 😝</div></div>
+      <div id="gameArea"><div style="padding-top:145px;opacity:.55" id="gameHint">press 'CUBA TEKAN' and become a professional lily catcher 😝</div></div>
       <button class="cta" onclick="startGame()">CUBA TEKAN</button>
     </div>
   </section>
@@ -183,7 +183,7 @@ footer{text-align:center;opacity:.65;padding:30px}
   <section class="section reveal">
     <div class="card">
       <h2>❓ How well do you know yourself?</h2>
-      <p>Pick the scientifically correct answer.</p>
+      <p>Pick the correct answer.</p>
       <div id="quiz"></div>
     </div>
   </section>
@@ -207,11 +207,11 @@ footer{text-align:center;opacity:.65;padding:30px}
       <p>Thankyou sebab bersabar, always support, tunggu, and selalu je sweet dengan saya. Thankyou juga sebab always je expose saya. It really means a lot to me even when i didn’t show it.</p>
       <p>We may already broke up, but you still have a special place in my heart 🥰. Saya sentiasa doakan yang terbaik untuk awak and saya harap awak dapat jadi anak yang solehah kepada mummy & daddy. InshaAllah, one day you can achieve your dreams 💕</p>
       <p>I’m so sorry for everything. Saya minta maaf sebab selalu buat awak sedih. Saya minta maaf juga sebab selalu buat awak menangis. Thank you for not giving up on me.</p>
-      <div class="card" style="margin-top:18px;background:#fff7fb"><h3>🌷 One last thing...</h3><p>Thank you for all the little things, the support, the jokes, the waiting, and especially the Dahlia photo spam.</p><p><b>I hope 19 treats you kindly, Qaseh.</b> Keep being the sweet, caring person you are. 💕</p><div style="font-size:30px">🌷 🐈 💗 🎂 ✨</div></div>
+      <div class="card" style="margin-top:18px;background:#fff7fb"><h3>🌷 One last thing...</h3><p>Thank you for all the little things, the support, the jokes, the waiting, and especially the Dahlia photo spam.</p><p><b>I hope 16 treats you kindly.</b> Please keep on being yourself, okay? 💕</p><div style="font-size:30px">🌷 🐈 💗 🎂 ✨</div></div>
     </div>
   </section>
 
-  <footer> Made with pink pixels, lilies & questionable amounts of brainrot • happy 16th, Qaseh 🌷</footer>
+  <footer> Dibuat dengan penuh kasih sayang tau! • Happy 16th, Qaseh 🌷</footer>
 </main>
 
 <div id="toast"></div>
@@ -287,7 +287,7 @@ function unlockMessage(){
 
 // ---------------- YouTube music ----------------
 // Replace YOUR_VIDEO_ID with the ID from the YouTube video you want to embed.
-const YT_VIDEO_ID = "Fg6DR6SaarA";
+const YT_VIDEO_ID = "iZrWx0f2Qkw";
 let player;
 let ytReady = false;
 
@@ -321,7 +321,7 @@ function brainrot(text){
 }
 function openLoot(){
   const x=document.getElementById("loot");x.style.display="grid";
-  brainrot("LOOT BOX OPENED. absolutely life-changing.");
+  brainrot("LOOT BOX OPENED. Absolutely life-changing.");
 }
 const quizData=[
  {q:"Qaseh's birthday?", a:["24/9 🎂","31/2 🗿","404 😭"], c:0},
@@ -338,7 +338,7 @@ function answerQuiz(n){
   if(n===d.c){showToast("Correct. Qaseh lore knowledge: 📈📈📈");qi++;
     if(qi>=quizData.length){document.getElementById("quiz").innerHTML="<h3>🏆 QUIZ COMPLETE</h3><p>You have officially survived the Qaseh lore exam.</p>";return;}
     renderQuiz();
-  }else showToast("WRONG 😭 please consult the Qaseh wiki");
+  }else showToast("SALAH 😭 Cuba tengok Qaseh wikipedia");
 }
 renderQuiz();
 
