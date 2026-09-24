@@ -118,7 +118,68 @@ button:active{
 .start:hover{
   transform:translateY(-3px) scale(1.02);
 }
+/* ================= BIRTHDAY VIDEO GATE ================= */
 
+#videoGate{
+  position:fixed;
+  inset:0;
+  z-index:300;
+
+  display:none;
+  place-items:center;
+
+  padding:20px;
+
+  background:
+    radial-gradient(circle at 20% 20%,#fff 0 5%,transparent 25%),
+    linear-gradient(145deg,#fff4fa,#ffd6e9);
+
+  text-align:center;
+}
+
+#videoGate.show{
+  display:grid;
+}
+
+.video-gate-card{
+  width:min(900px,100%);
+  padding:24px;
+
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(15px);
+
+  border:1px solid #fff;
+  border-radius:30px;
+
+  box-shadow:var(--shadow);
+}
+
+.video-gate-card h2{
+  margin-top:0;
+}
+
+#birthdayVideo{
+  width:100%;
+  aspect-ratio:16/9;
+
+  border-radius:22px;
+  overflow:hidden;
+
+  background:#000;
+  box-shadow:0 12px 35px #7b275025;
+}
+
+#birthdayVideo iframe{
+  width:100% !important;
+  height:100% !important;
+  border:0;
+}
+
+.video-gate-note{
+  font-size:13px;
+  opacity:.65;
+  margin:12px 0 0;
+}
 /* ================= MAIN ================= */
 
 main{
@@ -406,6 +467,16 @@ h2{
 
 /* ================= MUSIC ================= */
 
+  #ytplayer{
+  position:fixed;
+  width:1px;
+  height:1px;
+  left:-10px;
+  top:-10px;
+  opacity:0;
+  pointer-events:none;
+  overflow:hidden;
+}
 #music{
   position:fixed;
 
@@ -635,7 +706,35 @@ INTRO
 
 </div>
 
+<!-- =====================================================
+BIRTHDAY VIDEO GATE
+===================================================== -->
 
+<div id="videoGate">
+
+  <div class="video-gate-card">
+
+    <div style="font-size:55px">
+      🎂🌷🐈
+    </div>
+
+    <h2>
+      One tiny birthday thing first... 💗
+    </h2>
+
+    <p>
+      Watch this before entering the silly birthday universe hehe.
+    </p>
+
+    <div id="birthdayVideo"></div>
+
+    <p class="video-gate-note">
+      🎬 The birthday universe unlocks when the video finishes.
+    </p>
+
+  </div>
+
+</div>
 <!-- =====================================================
 YOUTUBE MUSIC
 ===================================================== -->
@@ -1450,7 +1549,22 @@ function particles(x,y,emoji){
 
 }
 
+function showToast(text){
 
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = text;
+
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(()=>{
+    toast.classList.remove("show");
+  },2200);
+
+}
 /* =====================================================
 GLOBAL BUTTON SOUND
 ===================================================== */
@@ -1483,32 +1597,6 @@ document.addEventListener("click",function(e){
 });
 
 
-/* =====================================================
-ENTER
-===================================================== */
-
-function enterSite(){
-
-  initAudio();
-
-  document
-    .getElementById("intro")
-    .classList.add("hide");
-
-  document
-    .querySelectorAll(".reveal")
-    .forEach((x,n)=>{
-
-      setTimeout(
-        ()=>x.classList.add("on"),
-        150+n*120
-      );
-
-    });
-
-  makeFlowers();
-
-}
 
 
 /* =====================================================
@@ -1874,16 +1962,91 @@ function unlockMessage(){
 YOUTUBE MUSIC
 ===================================================== */
 
-const YT_VIDEO_ID=
+/* =====================================================
+YOUTUBE
+===================================================== */
+
+const BIRTHDAY_VIDEO_ID =
+  "NOn-kvsFET8";
+  
+const MUSIC_VIDEO_ID =
   "iZrWx0f2Qkw";
 
-let player;
-let ytReady=false;
+let birthdayPlayer;
+let musicPlayer;
 
+let birthdayYTReady = false;
+let musicYTReady = false;
+
+let birthdayVideoMode = false;
+let birthdayVideoFinished = false;
+
+
+/* =====================================================
+YOUTUBE API READY
+===================================================== */
 
 function onYouTubeIframeAPIReady(){
 
-  player=
+  /*
+    BIRTHDAY VIDEO
+  */
+
+  birthdayPlayer =
+    new YT.Player(
+      "birthdayVideo",
+      {
+
+        height:"450",
+        width:"800",
+
+        videoId:BIRTHDAY_VIDEO_ID,
+
+        playerVars:{
+          playsinline:1,
+          controls:0,
+          rel:0,
+          modestbranding:1
+        },
+
+        events:{
+
+          onReady:()=>{
+
+            birthdayYTReady=true;
+
+            if(birthdayVideoMode){
+
+              birthdayPlayer.playVideo();
+
+            }
+
+          },
+
+          onStateChange:(event)=>{
+
+            if(
+              birthdayVideoMode &&
+              event.data === YT.PlayerState.ENDED
+            ){
+
+              finishBirthdayVideo();
+
+            }
+
+          }
+
+        }
+
+      }
+    );
+
+
+  /*
+    MUSIC VIDEO
+  */
+
+  musicPlayer =
     new YT.Player(
       "ytplayer",
       {
@@ -1891,20 +2054,24 @@ function onYouTubeIframeAPIReady(){
         height:"200",
         width:"200",
 
-        videoId:YT_VIDEO_ID,
+        videoId:MUSIC_VIDEO_ID,
 
         playerVars:{
           playsinline:1,
           controls:0,
           loop:1,
-          playlist:YT_VIDEO_ID,
+          playlist:MUSIC_VIDEO_ID,
           rel:0
         },
 
         events:{
+
           onReady:()=>{
-            ytReady=true;
+
+            musicYTReady=true;
+
           }
+
         }
 
       }
@@ -1913,18 +2080,120 @@ function onYouTubeIframeAPIReady(){
 }
 
 
+/* =====================================================
+LOAD YOUTUBE API
+===================================================== */
+
 (function loadYT(){
 
-  const tag=
+  const tag =
     document.createElement("script");
 
-  tag.src=
+  tag.src =
     "https://www.youtube.com/iframe_api";
 
   document.head.appendChild(tag);
 
 })();
 
+
+/* =====================================================
+ENTER BIRTHDAY VIDEO
+===================================================== */
+
+function enterSite(){
+
+  initAudio();
+
+  birthdayVideoMode=true;
+
+  birthdayVideoFinished=false;
+
+  document
+    .getElementById("videoGate")
+    .classList.add("show");
+
+
+  document
+    .getElementById("music")
+    .style.display="none";
+
+
+  if(birthdayYTReady){
+
+    birthdayPlayer.playVideo();
+
+  }else{
+
+    showToast(
+      "Loading the birthday video... 🎂"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+BIRTHDAY VIDEO FINISHED
+===================================================== */
+
+function finishBirthdayVideo(){
+
+  if(birthdayVideoFinished){
+    return;
+  }
+
+  birthdayVideoFinished=true;
+
+  birthdayVideoMode=false;
+
+
+  birthdayPlayer.stopVideo();
+
+  successSound();
+
+
+  document
+    .getElementById("videoGate")
+    .classList.remove("show");
+
+
+  document
+    .getElementById("intro")
+    .classList.add("hide");
+
+
+  document
+    .getElementById("music")
+    .style.display="block";
+
+
+  document
+    .querySelectorAll(".reveal")
+    .forEach((x,n)=>{
+
+      setTimeout(
+        ()=>x.classList.add("on"),
+        150+n*120
+      );
+
+    });
+
+
+  makeFlowers();
+
+
+  showToast(
+    "Birthday universe unlocked! 🎂🌷✨"
+  );
+
+}
+
+
+/* =====================================================
+MUSIC BUTTON
+===================================================== */
 
 function toggleMusic(){
 
@@ -1933,36 +2202,38 @@ function toggleMusic(){
   const musicButton =
     document.getElementById("music");
 
+
   /*
     First tap:
-    Drop the music button onto the page.
+    Drop music button.
   */
 
-  if(!musicButton.classList.contains("dropped")){
+  if(
+    !musicButton.classList.contains("dropped")
+  ){
 
     musicButton.classList.add("dropped");
 
-    /*
-      Give the drop animation time to finish,
-      then start the music.
-    */
 
     setTimeout(()=>{
 
-      if(
-        !ytReady ||
-        YT_VIDEO_ID==="YOUR_VIDEO_ID"
-      ){
+      if(!musicYTReady){
 
         showToast(
-          "Paste your YouTube VIDEO ID into YT_VIDEO_ID first 🎵"
+          "Music is still loading... 🎵"
         );
 
         return;
 
       }
 
-      player.playVideo();
+
+      if(birthdayVideoMode){
+        return;
+      }
+
+
+      musicPlayer.playVideo();
 
       musicButton.textContent="⏸";
 
@@ -1973,39 +2244,43 @@ function toggleMusic(){
     },650);
 
     return;
+
   }
 
 
   /*
-    Normal tap after the button has dropped:
-    Play / pause.
+    Normal play / pause.
   */
 
-  if(
-    !ytReady ||
-    YT_VIDEO_ID==="YOUR_VIDEO_ID"
-  ){
+  if(!musicYTReady){
 
     showToast(
-      "Paste your YouTube VIDEO ID into YT_VIDEO_ID first 🎵"
+      "Music is still loading... 🎵"
     );
 
     return;
 
   }
 
+
+  if(birthdayVideoMode){
+    return;
+  }
+
+
   const state =
-    player.getPlayerState();
+    musicPlayer.getPlayerState();
 
-  if(state===1){
 
-    player.pauseVideo();
+  if(state===YT.PlayerState.PLAYING){
+
+    musicPlayer.pauseVideo();
 
     musicButton.textContent="▶";
 
   }else{
 
-    player.playVideo();
+    musicPlayer.playVideo();
 
     musicButton.textContent="⏸";
 
@@ -2016,7 +2291,6 @@ function toggleMusic(){
   }
 
 }
-
 /* =====================================================
 DRAGGABLE MUSIC BUTTON
 ===================================================== */
