@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<title>Qaseh Damya — 16 🌷</title>
+<title>Qaseh Damya — 16 🤍</title>
 
 <style>
 :root{
@@ -666,9 +666,9 @@ PAGE 1
         Welcome to your extremely unserious birthday website.<br>
 
         16 years old.
-        Still cute.
-        Still sweet.
-        Still sending Dahlia pics HAHAHAHA.
+        Comel.
+        Sweet.
+        Asyik spam gambar Dahlia HAHAHAHA.
 
       </p>
 
@@ -699,7 +699,7 @@ PAGE 1
         <p>
           Flowers? Yes.
           Pink? Yes.
-          Dramatic little flowers everywhere? Yes.
+          Aye? YESSS.
         </p>
       </div>
 
@@ -777,7 +777,7 @@ PAGE 2
       <p class="game-info">
 
         🌷 = +1 point &nbsp;&nbsp;
-        🐈 = MEOW but NO point 😭
+        🐈 = -1 point
 
       </p>
 
@@ -805,7 +805,7 @@ PAGE 2
 
         <div class="photo">
 
-          QASEH PIC HERE
+          QASEH PIC
 
           <br>
 
@@ -814,7 +814,7 @@ PAGE 2
           <br>
 
           <span class="small">
-            Test...
+            TEST...
           </span>
 
         </div>
@@ -929,21 +929,27 @@ PAGE 3
 
   <section class="section">
 
-    <div class="card">
+  <div class="card">
 
-      <h2>
-        ❓ Qaseh Lore Exam
-      </h2>
+    <h2>
+      ❓ Qaseh Lore Exam
+    </h2>
 
-      <p>
-        Pick the correct answer.
-      </p>
+    <p>
+      Pick the correct answer.
+    </p>
 
-      <div id="quiz"></div>
+    <div id="quiz">
+
+      <div id="quizQuestion"></div>
+
+      <div id="quizAnswers"></div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
   <section class="section">
@@ -997,7 +1003,7 @@ PAGE 3
          class="card message locked">
 
       <h2>
-        💌 Message unlocked
+        💌 Message unlocked!
       </h2>
 
       <p>
@@ -1063,7 +1069,7 @@ PAGE 3
 
   <footer>
 
-    Dibuat dengan penuh kasih sayang tau!
+    Dibuat dengan penuh kasih sayang tau |
 
     <br>
 
@@ -1652,8 +1658,8 @@ function spawn(){
 
 
   /*
-    70% chance lily
-    30% chance cat
+    60% chance lily
+    40% chance cat
   */
 
   const isCat=
@@ -1694,35 +1700,52 @@ function spawn(){
     );
 
 
-    if(isCat){
+if(isCat){
 
-      /*
-        CAT = MEOW
-      */
+  /*
+    CAT = MEOW + LOSE 1 POINT
+  */
 
-      meowSound();
+  meowSound();
 
-      showToast(
-        "MEOWWW 😭🐈 AYE DOES NOT COUNT!"
-      );
+  score = Math.max(0, score - 1);
 
-      b.animate(
-        [
-          {transform:"scale(1)"},
-          {transform:"scale(1.35) rotate(12deg)"},
-          {transform:"scale(0)"}
-        ],
-        {duration:350}
-      );
+  document
+    .getElementById("score")
+    .textContent = score;
 
-      setTimeout(
-        ()=>spawn(),
-        250
-      );
+  showToast(
+    "MEOWWW 😭🐈 AYE STOLE 1 POINT!"
+  );
 
-      return;
+  const rect =
+    b.getBoundingClientRect();
 
+  particles(
+    rect.left + rect.width/2,
+    rect.top + rect.height/2,
+    "🐾"
+  );
+
+  b.animate(
+    [
+      {transform:"scale(1)"},
+      {transform:"scale(1.35) rotate(12deg)"},
+      {transform:"scale(0)"}
+    ],
+    {
+      duration:350
     }
+  );
+
+  setTimeout(
+    ()=>spawn(),
+    250
+  );
+
+  return;
+
+}
 
 
     /*
@@ -1992,114 +2015,181 @@ function openLoot(){
 QUIZ
 ===================================================== */
 
-const quizData=[
+/* =====================================================
+QASEH LORE QUIZ
+===================================================== */
+
+const quizData = [
 
   {
-    q:"Qaseh's birthday?",
-    a:[
-      "24/9 🎂",
-      "31/2 🗿",
-      "404 😭"
+    q: "Qaseh's birthday?",
+    a: [
+      "24/9",
+      "31/2",
+      "404"
     ],
-    c:0
+    c: 0
   },
 
   {
-    q:"Dahlia's nickname?",
-    a:[
-      "Aye 🐈",
+    q: "Dahlia's nickname?",
+    a: [
+      "Mrs. Worldwide 🌎",
       "CEO 🧑‍💼",
-      "Mrs. Worldwide"
+      "Aye 🐈 "
     ],
-    c:0
+    c: 0
   },
 
   {
-    q:"The correct flower vibe?",
-    a:[
-      "🌷🌷🌷",
+    q: "The correct flower vibe?",
+    a: [
       "🥦🥦🥦",
+      "🌷🌷🌷",
       "🧱🧱🧱"
     ],
-    c:0
+    c: 0
   }
 
 ];
 
-
-let qi=0;
+let qi = 0;
+let quizLocked = false;
 
 
 function renderQuiz(){
 
-  const x=
-    document.getElementById("quiz");
+  const question =
+    document.getElementById("quizQuestion");
 
-  const d=
+  const answers =
+    document.getElementById("quizAnswers");
+
+  const d =
     quizData[qi];
 
-  x.innerHTML=
-    `<h3>${d.q}</h3>`+
+  quizLocked = false;
 
-    d.a
-      .map(
-        (a,n)=>
-          `<button
-             class="cta ${n===d.c?'secondary':''}"
-             onclick="answerQuiz(${n})">
-             ${a}
-           </button>`
-      )
-      .join("");
+  question.innerHTML = `
+    <h3>${d.q}</h3>
+  `;
+
+  answers.innerHTML = "";
+
+  d.a.forEach((answer,index)=>{
+
+    const button =
+      document.createElement("button");
+
+    button.className = "cta";
+
+    /*
+      IMPORTANT:
+      Every answer has EXACTLY the same
+      appearance before being clicked.
+    */
+
+    button.textContent = answer;
+
+    button.onclick = function(){
+
+      answerQuiz(index,button);
+
+    };
+
+    answers.appendChild(button);
+
+  });
 
 }
 
 
-function answerQuiz(n){
+function answerQuiz(selected,button){
 
-  const d=
-    quizData[qi];
+  if(quizLocked)
+    return;
 
-  if(n===d.c){
+  const correct =
+    quizData[qi].c;
+
+  if(selected === correct){
+
+    quizLocked = true;
 
     successSound();
 
+    button.textContent =
+      "✅ " + quizData[qi].a[selected];
+
+    button.style.background =
+      "#5bc47a";
+
     showToast(
-      "Correct. Qaseh lore knowledge: 📈📈📈"
+      "CORRECT! Qaseh lore knowledge 📈📈📈"
     );
 
-    qi++;
+    setTimeout(()=>{
 
-    if(qi>=quizData.length){
+      qi++;
 
-      document
-        .getElementById("quiz")
-        .innerHTML=
-        `
-        <h3>🏆 QUIZ COMPLETE</h3>
+      if(qi >= quizData.length){
 
-        <p>
-        You have officially survived
-        the Qaseh lore exam.
-        </p>
+        document.getElementById("quiz").innerHTML = `
 
-        <div style="font-size:45px">
-        🌷🐈🎂💗✨
-        </div>
+          <div style="text-align:center">
+
+            <div style="font-size:60px">
+              🏆🌷🐈🎂
+            </div>
+
+            <h3>
+              QUIZ COMPLETE!
+            </h3>
+
+            <p>
+              You have officially survived
+              the Qaseh Lore Exam.
+            </p>
+
+            <div style="font-size:40px">
+              💗✨🌷🐈✨💗
+            </div>
+
+          </div>
+
         `;
 
-      return;
+        return;
 
-    }
+      }
 
-    renderQuiz();
+      renderQuiz();
+
+    },700);
 
   }else{
+
+    /*
+      Wrong answer.
+      We DON'T reveal which one is correct.
+    */
+
+    button.animate(
+      [
+        {transform:"translateX(0)"},
+        {transform:"translateX(-7px)"},
+        {transform:"translateX(7px)"},
+        {transform:"translateX(0)"}
+      ],
+      {
+        duration:300
+      }
+    );
 
     meowSound();
 
     showToast(
-      "SALAH 😭 Cuba tengok Qaseh wikipedia"
+      "SALAH 😭 Try again!"
     );
 
   }
