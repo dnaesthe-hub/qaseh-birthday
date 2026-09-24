@@ -3,345 +3,2113 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <title>Qaseh Damya — 16 🌷</title>
+
 <style>
 :root{
-  --pink:#ff6fae;--hot:#ff3f8e;--soft:#fff0f7;--deep:#7b2750;
-  --glass:rgba(255,255,255,.78);--shadow:0 18px 55px rgba(143,42,91,.18);
+  --pink:#ff6fae;
+  --hot:#ff3f8e;
+  --soft:#fff0f7;
+  --deep:#7b2750;
+  --glass:rgba(255,255,255,.82);
+  --shadow:0 18px 55px rgba(143,42,91,.18);
 }
+
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  margin:0;color:var(--deep);font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif;
+  margin:0;
+  color:var(--deep);
+  font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif;
+
   background:
     radial-gradient(circle at 10% 10%,#ffd9eb 0 12%,transparent 30%),
     radial-gradient(circle at 90% 20%,#ffe4f1 0 10%,transparent 28%),
     linear-gradient(135deg,#fff8fc,#ffeef7 45%,#fff9fc);
-  min-height:100vh;overflow-x:hidden;
+
+  min-height:100vh;
+  overflow-x:hidden;
 }
-button{font:inherit}
+
+button{
+  font:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+button:active{
+  transform:scale(.94)!important;
+}
+
+/* ================= INTRO ================= */
+
 #intro{
-  position:fixed;inset:0;z-index:100;display:grid;place-items:center;text-align:center;
-  background:linear-gradient(145deg,#fff4fa,#ffd6e9);transition:opacity .8s,visibility .8s;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:grid;
+  place-items:center;
+  text-align:center;
+
+  background:
+    radial-gradient(circle at 20% 20%,#fff 0 5%,transparent 20%),
+    linear-gradient(145deg,#fff4fa,#ffd6e9);
+
+  transition:opacity .8s,visibility .8s;
 }
-#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
-.intro-card{padding:30px;max-width:650px}
-.lily{font-size:70px;animation:float 2.2s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-12px) rotate(3deg)}}
-.type{font-family:"Courier New",monospace;white-space:nowrap;overflow:hidden;border-right:3px solid var(--hot);margin:auto;max-width:max-content}
-#intro h1{font-size:clamp(25px,7vw,52px);margin:14px 0 8px}
-#intro p{font-size:clamp(14px,4vw,18px);opacity:.8}
+
+#intro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.intro-card{
+  padding:30px;
+  max-width:650px;
+}
+
+.lily{
+  font-size:70px;
+  animation:float 2.2s ease-in-out infinite;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-12px) rotate(3deg);
+  }
+}
+
+.type{
+  font-family:"Courier New",monospace;
+  white-space:nowrap;
+  overflow:hidden;
+  border-right:3px solid var(--hot);
+  margin:auto;
+  max-width:max-content;
+}
+
+#intro h1{
+  font-size:clamp(25px,7vw,52px);
+  margin:14px 0 8px;
+}
+
+#intro p{
+  font-size:clamp(14px,4vw,18px);
+  opacity:.8;
+}
+
 .start{
-  border:0;background:var(--hot);color:#fff;padding:14px 22px;border-radius:999px;
-  box-shadow:0 10px 25px #ff3f8e45;cursor:pointer;transition:.2s; margin-top:18px
+  border:0;
+  background:var(--hot);
+  color:#fff;
+  padding:14px 22px;
+  border-radius:999px;
+  box-shadow:0 10px 25px #ff3f8e45;
+  cursor:pointer;
+  transition:.2s;
+  margin-top:18px;
 }
-.start:hover{transform:translateY(-3px) scale(1.02)}
-main{max-width:1050px;margin:auto;padding:28px 18px 90px}
-.hero{min-height:92vh;display:grid;place-items:center;text-align:center;position:relative}
+
+.start:hover{
+  transform:translateY(-3px) scale(1.02);
+}
+
+/* ================= MAIN ================= */
+
+main{
+  max-width:1050px;
+  margin:auto;
+  padding:28px 18px 90px;
+}
+
 .card{
-  background:var(--glass);backdrop-filter:blur(14px);border:1px solid #fff;
-  border-radius:30px;box-shadow:var(--shadow);padding:28px
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  border:1px solid #fff;
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  padding:28px;
 }
-.hero-card{max-width:780px}
-.badge{display:inline-block;background:#fff;border-radius:999px;padding:8px 14px;font-size:13px}
-h2{font-size:clamp(25px,6vw,42px);margin:10px 0}
-.hero-title{font-size:clamp(38px,10vw,78px);line-height:.95;margin:18px 0 10px}
-.subtitle{font-size:17px;opacity:.78;line-height:1.6}
-.flower-rain{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.petal{position:absolute;top:-30px;animation:fall linear forwards;font-size:22px}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.15}}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:20px}
-.section{margin:70px 0}
-.section h3{font-size:25px;margin:0 0 6px}
-.small{font-size:14px;opacity:.72}
-.game-box{text-align:center}
-.score{font-size:25px;font-weight:800;margin:12px}
-#gameArea{
-  height:360px;position:relative;overflow:hidden;border-radius:24px;
-  background:linear-gradient(160deg,#fff,#ffe5f1);border:2px dashed #ff9bc4;
+
+.hero{
+  min-height:92vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  position:relative;
 }
-.target{
-  position:absolute;border:0;background:#fff;border-radius:50%;width:58px;height:58px;
-  font-size:29px;box-shadow:0 8px 18px #8b2e5730;cursor:pointer;animation:bob .7s infinite alternate;
+
+.hero-card{
+  max-width:780px;
 }
-@keyframes bob{to{transform:translateY(-5px) rotate(5deg)}}
+
+.badge{
+  display:inline-block;
+  background:#fff;
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:13px;
+}
+
+h2{
+  font-size:clamp(25px,6vw,42px);
+  margin:10px 0;
+}
+
+.hero-title{
+  font-size:clamp(38px,10vw,78px);
+  line-height:.95;
+  margin:18px 0 10px;
+}
+
+.subtitle{
+  font-size:17px;
+  opacity:.78;
+  line-height:1.6;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+
+.section{
+  margin:70px 0;
+}
+
+.section h3{
+  font-size:25px;
+  margin:0 0 6px;
+}
+
+.small{
+  font-size:14px;
+  opacity:.72;
+}
+
+/* ================= FLOWERS ================= */
+
+.flower-rain{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.petal{
+  position:absolute;
+  top:-30px;
+  animation:fall linear forwards;
+  font-size:22px;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:.15;
+  }
+}
+
+/* ================= BUTTONS ================= */
+
 .cta{
-  border:0;background:var(--hot);color:#fff;border-radius:999px;padding:12px 18px;cursor:pointer;
-  box-shadow:0 8px 20px #ff3f8e33;margin:7px
+  border:0;
+  background:var(--hot);
+  color:#fff;
+  border-radius:999px;
+  padding:12px 18px;
+  cursor:pointer;
+  box-shadow:0 8px 20px #ff3f8e33;
+  margin:7px;
+  transition:.15s;
 }
-.secondary{background:#fff;color:var(--deep);border:1px solid #ffc0d9}
+
+.cta:hover{
+  transform:translateY(-2px);
+}
+
+.secondary{
+  background:#fff;
+  color:var(--deep);
+  border:1px solid #ffc0d9;
+}
+
+/* ================= GAME ================= */
+
+.game-box{
+  text-align:center;
+}
+
+.score{
+  font-size:25px;
+  font-weight:800;
+  margin:12px;
+}
+
+#gameArea{
+  height:390px;
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 20% 20%,#fff 0 4%,transparent 12%),
+    radial-gradient(circle at 80% 60%,#ffeaf4 0 5%,transparent 14%),
+    linear-gradient(160deg,#fff,#ffe5f1);
+  border:2px dashed #ff9bc4;
+}
+
+.target{
+  position:absolute;
+  border:0;
+  background:#fff;
+  border-radius:50%;
+  width:64px;
+  height:64px;
+  font-size:32px;
+  box-shadow:0 8px 18px #8b2e5730;
+  cursor:pointer;
+  animation:bob .7s infinite alternate;
+  z-index:5;
+}
+
+.target.cat{
+  width:68px;
+  height:68px;
+  background:#fff9fc;
+}
+
+@keyframes bob{
+  to{
+    transform:translateY(-5px) rotate(5deg);
+  }
+}
+
+.game-info{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.7;
+}
+
+/* ================= PHOTO ================= */
+
 .photo{
-  min-height:190px;border-radius:22px;border:2px dashed #ffb0ce;display:grid;place-items:center;
-  background:#fff7fb;font-size:16px;padding:20px;text-align:center
+  min-height:190px;
+  border-radius:22px;
+  border:2px dashed #ffb0ce;
+  display:grid;
+  place-items:center;
+  background:#fff7fb;
+  font-size:16px;
+  padding:20px;
+  text-align:center;
 }
-.message.locked{filter:blur(5px);user-select:none;position:relative}
-.message.locked:after{content:"🔒 Complete the silly game first";position:absolute;inset:0;display:grid;place-items:center;filter:none;font-weight:800;font-size:18px}
-.message.unlocked{animation:pop .7s ease}
-@keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:scale(1);opacity:1}}
-.message p{line-height:1.75}
+
+/* ================= MESSAGE ================= */
+
+.message.locked{
+  filter:blur(5px);
+  user-select:none;
+  position:relative;
+}
+
+.message.locked:after{
+  content:"🔒 Complete the silly game first";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  filter:none;
+  font-weight:800;
+  font-size:18px;
+}
+
+.message.unlocked{
+  animation:pop .7s ease;
+}
+
+@keyframes pop{
+  0%{
+    transform:scale(.96);
+    opacity:0;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.message p{
+  line-height:1.75;
+}
+
+/* ================= TOAST ================= */
+
 #toast{
-  position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);z-index:50;
-  background:#fff;color:var(--deep);padding:16px 20px;border-radius:20px;box-shadow:var(--shadow);
-  max-width:min(90vw,620px);text-align:center;transition:.45s
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,120px);
+  z-index:150;
+
+  background:#fff;
+  color:var(--deep);
+  padding:16px 20px;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+
+  max-width:min(90vw,620px);
+  text-align:center;
+
+  transition:.45s;
 }
-#toast.show{transform:translate(-50%,0)}
+
+#toast.show{
+  transform:translate(-50%,0);
+}
+
+/* ================= MODAL ================= */
+
 .modal{
-  position:fixed;inset:0;z-index:80;background:#6d164855;display:none;place-items:center;padding:20px
+  position:fixed;
+  inset:0;
+  z-index:120;
+
+  background:#6d164855;
+  display:none;
+  place-items:center;
+  padding:20px;
 }
-.modal.show{display:grid}
-.modal-card{max-width:560px;text-align:center;background:#fff;border-radius:30px;padding:30px;box-shadow:var(--shadow)}
+
+.modal.show{
+  display:grid;
+}
+
+.modal-card{
+  max-width:560px;
+  text-align:center;
+  background:#fff;
+  border-radius:30px;
+  padding:30px;
+  box-shadow:var(--shadow);
+  animation:pop .5s ease;
+}
+
+/* ================= MUSIC ================= */
+
 #music{
-  position:fixed;right:16px;bottom:16px;z-index:70;width:58px;height:58px;border:0;border-radius:50%;
-  background:var(--hot);color:#fff;font-size:23px;box-shadow:0 10px 25px #ff3f8e55;cursor:pointer;
-  animation:pulse 2s infinite
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:70;
+
+  width:58px;
+  height:58px;
+
+  border:0;
+  border-radius:50%;
+
+  background:var(--hot);
+  color:#fff;
+
+  font-size:23px;
+
+  box-shadow:0 10px 25px #ff3f8e55;
+  cursor:pointer;
+
+  animation:pulse 2s infinite;
 }
-@keyframes pulse{50%{box-shadow:0 10px 30px #ff3f8e77}}
-footer{text-align:center;opacity:.65;padding:30px}
-.reveal{opacity:0;transform:translateY(22px);transition:.7s}
-.reveal.on{opacity:1;transform:none}
-@media(max-width:600px){.card{padding:22px}.hero{min-height:82vh}.section{margin:52px 0}}
-#ytplayer{position:fixed;left:-9999px;top:-9999px;width:200px;height:200px;opacity:0;pointer-events:none}
+
+@keyframes pulse{
+  50%{
+    box-shadow:0 10px 30px #ff3f8e77;
+  }
+}
+
+#ytplayer{
+  position:fixed;
+  left:-9999px;
+  top:-9999px;
+  width:200px;
+  height:200px;
+  opacity:0;
+  pointer-events:none;
+}
+
+/* ================= PAGE SYSTEM ================= */
+
+.page{
+  display:none;
+  min-height:70vh;
+}
+
+.page.active{
+  display:block;
+  animation:pageIn .65s ease;
+}
+
+@keyframes pageIn{
+  0%{
+    opacity:0;
+    transform:rotateY(-12deg) translateX(25px);
+  }
+
+  100%{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.page.turn{
+  animation:pageTurn .65s ease;
+}
+
+@keyframes pageTurn{
+  0%{
+    opacity:.2;
+    transform:perspective(1200px) rotateY(80deg);
+  }
+
+  100%{
+    opacity:1;
+    transform:perspective(1200px) rotateY(0);
+  }
+}
+
+.page-controls{
+  position:sticky;
+  bottom:15px;
+  z-index:60;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+
+  margin:10px auto 20px;
+  width:max-content;
+
+  padding:10px 14px;
+
+  background:#ffffffdd;
+  backdrop-filter:blur(12px);
+
+  border-radius:999px;
+  box-shadow:0 10px 35px #7b275025;
+}
+
+.page-btn{
+  border:0;
+  background:var(--hot);
+  color:#fff;
+
+  width:45px;
+  height:45px;
+
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.page-btn:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+#pageNumber{
+  min-width:70px;
+  text-align:center;
+  font-weight:800;
+}
+
+/* ================= CLICK PARTICLES ================= */
+
+.click-particle{
+  position:fixed;
+  pointer-events:none;
+  z-index:200;
+  font-size:20px;
+  animation:particle .8s ease forwards;
+}
+
+@keyframes particle{
+  to{
+    transform:
+      translate(
+        calc(var(--x) * 1px),
+        calc(var(--y) * 1px)
+      )
+      rotate(180deg);
+    opacity:0;
+  }
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(22px);
+  transition:.7s;
+}
+
+.reveal.on{
+  opacity:1;
+  transform:none;
+}
+
+footer{
+  text-align:center;
+  opacity:.65;
+  padding:30px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px){
+
+  .card{
+    padding:22px;
+  }
+
+  .hero{
+    min-height:82vh;
+  }
+
+  .section{
+    margin:52px 0;
+  }
+
+  #gameArea{
+    height:350px;
+  }
+
+  .page-controls{
+    bottom:10px;
+  }
+}
 </style>
 </head>
+
 <body>
 
+<!-- =====================================================
+INTRO
+===================================================== -->
+
 <div id="intro">
+
   <div class="intro-card">
+
     <div class="lily">🌷</div>
+
     <h1 id="typing" class="type"></h1>
-    <p>A tiny pink corner of the internet for Qaseh Damya Adreana ✨</p>
-    <button class="start" onclick="enterSite()">Enter the silly birthday universe!!! →</button>
+
+    <p>
+      A tiny pink corner of the internet for Qaseh Damya Adreana ✨
+    </p>
+
+    <button class="start" onclick="enterSite()">
+      Enter the silly birthday universe!!! →
+    </button>
+
   </div>
+
 </div>
 
-<!-- YouTube music: replace YOUR_VIDEO_ID below with the ID from the YouTube video URL. -->
+
+<!-- =====================================================
+YOUTUBE MUSIC
+===================================================== -->
+
 <div id="ytplayer" aria-hidden="true"></div>
-<button id="music" title="Play / pause music" onclick="toggleMusic()">▶</button>
+
+<button id="music"
+        title="Play / pause music"
+        onclick="toggleMusic()">
+  ▶
+</button>
+
+
+<!-- =====================================================
+PAGE 1
+===================================================== -->
 
 <main>
+
+<div class="page active" id="page1">
+
   <section class="hero">
+
     <div class="flower-rain" id="flowers"></div>
+
     <div class="card hero-card reveal">
-      <span class="badge">24 SEPTEMBER • LEVEL 16 UNLOCKED 🎂</span>
-      <div class="hero-title">Happy Birthday,<br><span style="color:var(--hot)">Qaseh 🌷</span></div>
+
+      <span class="badge">
+        24 SEPTEMBER • LEVEL 16 UNLOCKED 🎂
+      </span>
+
+      <div class="hero-title">
+        Happy Birthday,<br>
+        <span style="color:var(--hot)">
+          Qaseh 🌷
+        </span>
+      </div>
+
       <p class="subtitle">
+
         Welcome to your extremely unserious birthday website.<br>
-        16 years old. Still cute. Still sweet. Still sending Dahlia pics HAHAHAHA.
+
+        16 years old.
+        Still cute.
+        Still sweet.
+        Still sending Dahlia pics HAHAHAHA.
+
       </p>
-      <button class="cta" onclick="document.getElementById('game').scrollIntoView()">🎮 Enter the brainrot game</button>
+
+      <button class="cta"
+              onclick="goPage(2)">
+        📖 TURN THE PAGE →
+      </button>
+
     </div>
+
   </section>
 
+
   <section class="section reveal">
-    <h3>🌸 Qaseh lore archive</h3>
-    <p class="small">A highly scientific collection of things that are objectively part of the Qaseh cinematic universe.</p>
+
+    <h3>
+      🌸 Qaseh lore archive
+    </h3>
+
+    <p class="small">
+      A highly scientific collection of things that are objectively part of the Qaseh cinematic universe.
+    </p>
+
     <div class="grid">
-      <div class="card"><h3>🌷 Lily lover</h3><p>Flowers? Yes. Pink? Yes. Dramatic little flowers everywhere? Yes.</p></div>
-      <div class="card"><h3>🐈 Dahlia / Aye</h3><p>Aye is a celebrity. Buktinya awak selalu ambil gambar dia.</p></div>
-      <div class="card"><h3>🧠 Certified Gen Z</h3><p>Brainrot levels: MENAKUTKAN. Sweetness levels: INFINITE.</p></div>
-    </div>
-  </section>
 
-  <section id="game" class="section reveal">
-    <div class="card game-box">
-      <h2>🎮 Catch the Lily: A Very Serious Game!</h2>
-      <p>Catch <b>10 lilies</b>. Tak dapat tangkap? Noob. 😭<br>Hint: the lily is running because it has places to be.</p>
-      <div class="score">Score: <span id="score">0</span>/10</div>
-      <div id="gameArea"><div style="padding-top:145px;opacity:.55" id="gameHint">press 'CUBA TEKAN' and become a professional lily catcher 😝</div></div>
-      <button class="cta" onclick="startGame()">CUBA TEKAN</button>
-    </div>
-  </section>
-
-  <section class="section reveal">
-    <div class="grid">
       <div class="card">
-        <h3>📸 Memory slots</h3>
-        <div class="photo"> QASEH PIC HERE<br>📷<br><span class="small">Test...</span></div>
+        <h3>🌷 Lily lover</h3>
+        <p>
+          Flowers? Yes.
+          Pink? Yes.
+          Dramatic little flowers everywhere? Yes.
+        </p>
       </div>
+
       <div class="card">
-        <h3>🐈 Aye appreciation slot</h3>
-        <div class="photo">DAHLIA PIC <br>🐱🌷<br><span class="small">Sayang Aye.</span></div>
+        <h3>🐈 Dahlia / Aye</h3>
+        <p>
+          Aye is a celebrity.
+          Buktinya awak selalu ambil gambar dia.
+        </p>
       </div>
-    </div>
-  </section>
 
-
-  <section class="section reveal">
-    <div class="card">
-      <h2>🧠 Qaseh OS — Totally real diagnostic</h2>
-      <p class="small">Click the suspicious buttons. Nothing can possibly go wrong. Probably.</p>
-      <div class="grid">
-        <button class="cta" onclick="brainrot('Dahlia has entered the chat. 🐈')">🐈 summon Aye</button>
-        <button class="cta" onclick="brainrot('SYSTEM MESSAGE: Qaseh is too sweet. Please nerf.')">🍬 sweetness scan</button>
-        <button class="cta" onclick="brainrot('100% certified yapper detected. Respectfully.')">🗣️ yap detector</button>
-        <button class="cta" onclick="brainrot('🌷 Lily.exe has stopped working because it is too pretty.')">🌷 lily.exe</button>
+      <div class="card">
+        <h3>🧠 Certified Gen Z</h3>
+        <p>
+          Brainrot levels: MENAKUTKAN.
+          Sweetness levels: INFINITE.
+        </p>
       </div>
-      <div id="brainrotBox" class="photo" style="margin-top:14px"> Waiting for suspicious activity...</div>
+
     </div>
+
   </section>
 
-  <section class="section reveal">
-    <div class="card">
-      <h2>❓ How well do you know yourself?</h2>
-      <p>Pick the correct answer.</p>
-      <div id="quiz"></div>
-    </div>
-  </section>
-
-  <section class="section reveal">
-    <div class="card">
-      <h2>📦 Secret loot box</h2>
-      <p>There is absolutely no reason to click this.</p>
-      <button class="cta" onclick="openLoot()">🎁 DO NOT OPEN</button>
-      <div id="loot" class="photo" style="display:none;margin-top:14px">
-        YOU FOUND: <b>+999 QASEH BIRTHDAY LUCK</b> 🍀🌷<br>
-        <span class="small">Rare drop. Probability: Infinite.</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div id="message" class="card message locked">
-      <h2>💌 Message unlocked</h2>
-      <p><b>Dear Qaseh,</b> today is 24/9, which is the day you were born. I want to say Happy Birthday!!! and thankyou sangat sebab selalu ada dengan saya tak kira apa pun.</p>
-      <p>Thankyou sebab bersabar, always support, tunggu, and selalu je sweet dengan saya. Thankyou juga sebab always je expose saya. It really means a lot to me even when i didn’t show it.</p>
-      <p>We may already broke up, but you still have a special place in my heart 🥰. Saya sentiasa doakan yang terbaik untuk awak and saya harap awak dapat jadi anak yang solehah kepada mummy & daddy. InshaAllah, one day you can achieve your dreams 💕</p>
-      <p>I’m so sorry for everything. Saya minta maaf sebab selalu buat awak sedih. Saya minta maaf juga sebab selalu buat awak menangis. Thank you for not giving up on me.</p>
-      <div class="card" style="margin-top:18px;background:#fff7fb"><h3>🌷 One last thing...</h3><p>Thank you for all the little things, the support, the jokes, the waiting, and especially the Dahlia photo spam.</p><p><b>I hope 16 treats you kindly.</b> Please keep on being yourself, okay? 💕</p><div style="font-size:30px">🌷 🐈 💗 🎂 ✨</div></div>
-    </div>
-  </section>
-
-  <footer> Dibuat dengan penuh kasih sayang tau! • Sannah helwah!!! 🥳🎂🍰🍰</footer>
-</main>
-
-<div id="toast"></div>
-<div class="modal" id="winModal">
-  <div class="modal-card">
-    <div style="font-size:55px">🎉🌷🐈</div>
-    <h2>YAYYYY! Pandai awak main HAAHAHAHA 😭</h2>
-    <p>Congratulations on completing my silly little game. Here’s a message for you!</p>
-    <button class="cta" onclick="unlockMessage()">💌 OPEN MESSAGE</button>
-  </div>
 </div>
 
+
+<!-- =====================================================
+PAGE 2
+===================================================== -->
+
+<div class="page" id="page2">
+
+  <section class="section">
+
+    <div class="card game-box">
+
+      <h2>
+        🎮 Catch the Lily & Aye!
+      </h2>
+
+      <p>
+
+        Catch <b>10 lilies</b> 🌷
+
+        <br>
+
+        But watch out...
+
+        <br>
+
+        <b>Aye is invading the game. 🐈</b>
+
+      </p>
+
+      <div class="score">
+
+        Score:
+        <span id="score">0</span>/10
+
+      </div>
+
+      <div id="gameArea">
+
+        <div
+          style="padding-top:145px;opacity:.55"
+          id="gameHint">
+
+          press "CUBA TEKAN" and become a professional
+          lily catcher 😝
+
+        </div>
+
+      </div>
+
+      <p class="game-info">
+
+        🌷 = +1 point &nbsp;&nbsp;
+        🐈 = MEOW but NO point 😭
+
+      </p>
+
+      <button class="cta"
+              onclick="startGame()">
+
+        🎮 CUBA TEKAN
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="grid">
+
+      <div class="card">
+
+        <h3>
+          📸 Memory slot
+        </h3>
+
+        <div class="photo">
+
+          QASEH PIC HERE
+
+          <br>
+
+          📷
+
+          <br>
+
+          <span class="small">
+            Test...
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          🐈 Aye appreciation slot
+        </h3>
+
+        <div class="photo">
+
+          DAHLIA PIC
+
+          <br>
+
+          🐱🌷
+
+          <br>
+
+          <span class="small">
+            Sayang Aye.
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="card">
+
+      <h2>
+        🧠 Qaseh OS
+      </h2>
+
+      <p class="small">
+        Click the suspicious buttons.
+        Nothing can possibly go wrong.
+        Probably.
+      </p>
+
+      <div class="grid">
+
+        <button class="cta"
+                onclick="brainrot('Dahlia has entered the chat. 🐈')">
+
+          🐈 summon Aye
+
+        </button>
+
+        <button class="cta"
+                onclick="brainrot('SYSTEM MESSAGE: Qaseh is too sweet. Please nerf.')">
+
+          🍬 sweetness scan
+
+        </button>
+
+        <button class="cta"
+                onclick="brainrot('100% certified yapper detected. Respectfully.')">
+
+          🗣️ yap detector
+
+        </button>
+
+        <button class="cta"
+                onclick="brainrot('🌷 Lily.exe has stopped working because it is too pretty.')">
+
+          🌷 lily.exe
+
+        </button>
+
+      </div>
+
+      <div
+        id="brainrotBox"
+        class="photo"
+        style="margin-top:14px">
+
+        Waiting for suspicious activity...
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <button class="cta"
+          onclick="goPage(3)">
+
+    📖 NEXT PAGE →
+
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+PAGE 3
+===================================================== -->
+
+<div class="page" id="page3">
+
+  <section class="section">
+
+    <div class="card">
+
+      <h2>
+        ❓ Qaseh Lore Exam
+      </h2>
+
+      <p>
+        Pick the correct answer.
+      </p>
+
+      <div id="quiz"></div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="card">
+
+      <h2>
+        📦 Secret loot box
+      </h2>
+
+      <p>
+        There is absolutely no reason to click this.
+      </p>
+
+      <button class="cta"
+              onclick="openLoot()">
+
+        🎁 DO NOT OPEN
+
+      </button>
+
+      <div
+        id="loot"
+        class="photo"
+        style="display:none;margin-top:14px">
+
+        YOU FOUND:
+
+        <b>
+          +999 QASEH BIRTHDAY LUCK
+        </b>
+
+        🍀🌷
+
+        <br>
+
+        <span class="small">
+          Rare drop. Probability: Infinite.
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div id="message"
+         class="card message locked">
+
+      <h2>
+        💌 Message unlocked
+      </h2>
+
+      <p>
+        <b>Dear Qaseh,</b>
+        today is 24/9, which is the day you were born.
+        I want to say Happy Birthday!!!
+        and thankyou sangat sebab selalu ada dengan saya tak kira apa pun.
+      </p>
+
+      <p>
+        Thankyou sebab bersabar, always support,
+        tunggu, and selalu je sweet dengan saya.
+        Thankyou juga sebab always je expose saya.
+        It really means a lot to me even when i didn’t show it.
+      </p>
+
+      <p>
+        We may already broke up, but you still have a special place in my heart 🥰.
+        Saya sentiasa doakan yang terbaik untuk awak
+        and saya harap awak dapat jadi anak yang solehah kepada mummy & daddy.
+        InshaAllah, one day you can achieve your dreams 💕
+      </p>
+
+      <p>
+        I’m so sorry for everything.
+        Saya minta maaf sebab selalu buat awak sedih.
+        Saya minta maaf juga sebab selalu buat awak menangis.
+        Thank you for not giving up on me.
+      </p>
+
+      <div
+        class="card"
+        style="margin-top:18px;background:#fff7fb">
+
+        <h3>
+          🌷 One last thing...
+        </h3>
+
+        <p>
+          Thank you for all the little things,
+          the support, the jokes, the waiting,
+          and especially the Dahlia photo spam.
+        </p>
+
+        <p>
+          <b>
+            I hope 16 treats you kindly.
+          </b>
+
+          Please keep on being yourself, okay? 💕
+        </p>
+
+        <div style="font-size:30px">
+          🌷 🐈 💗 🎂 ✨
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    Dibuat dengan penuh kasih sayang tau!
+
+    <br>
+
+    Sannah helwah!!! 🥳🎂🍰🍰
+
+  </footer>
+
+</div>
+
+
+<!-- =====================================================
+PAGE CONTROLS
+===================================================== -->
+
+<div class="page-controls">
+
+  <button
+    id="prevBtn"
+    class="page-btn"
+    onclick="previousPage()">
+
+    ←
+
+  </button>
+
+  <span id="pageNumber">
+    Page 1 / 3
+  </span>
+
+  <button
+    id="nextBtn"
+    class="page-btn"
+    onclick="nextPage()">
+
+    →
+
+  </button>
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+TOAST
+===================================================== -->
+
+<div id="toast"></div>
+
+
+<!-- =====================================================
+WIN MODAL
+===================================================== -->
+
+<div class="modal"
+     id="winModal">
+
+  <div class="modal-card">
+
+    <div style="font-size:55px">
+      🎉🌷🐈
+    </div>
+
+    <h2>
+      YAYYYY!
+      Pandai awak main HAAHAHAHA 😭
+    </h2>
+
+    <p>
+      Congratulations on completing my silly little game.
+      Here’s a message for you!
+    </p>
+
+    <button class="cta"
+            onclick="unlockMessage()">
+
+      💌 OPEN MESSAGE
+
+    </button>
+
+  </div>
+
+</div>
+
+
 <script>
+
+/* =====================================================
+TYPING INTRO
+===================================================== */
+
 const typingText="Qaseh.exe is loading...";
+
 let i=0;
+
 (function type(){
+
   if(i<=typingText.length){
-    document.getElementById("typing").textContent=typingText.slice(0,i++);
+
+    document.getElementById("typing").textContent=
+      typingText.slice(0,i++);
+
     setTimeout(type,65);
+
   }
+
 })();
+
+
+/* =====================================================
+SOUND ENGINE
+No external sound files required
+===================================================== */
+
+let audioCtx=null;
+
+function initAudio(){
+
+  if(!audioCtx){
+
+    audioCtx=
+      new (window.AudioContext ||
+           window.webkitAudioContext)();
+
+  }
+
+  if(audioCtx.state==="suspended"){
+    audioCtx.resume();
+  }
+
+}
+
+
+/* Generic tiny click sound */
+
+function buttonSound(){
+
+  initAudio();
+
+  const osc=
+    audioCtx.createOscillator();
+
+  const gain=
+    audioCtx.createGain();
+
+  osc.type="sine";
+
+  osc.frequency.setValueAtTime(
+    520,
+    audioCtx.currentTime
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    720,
+    audioCtx.currentTime+.08
+  );
+
+  gain.gain.setValueAtTime(
+    .0001,
+    audioCtx.currentTime
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .12,
+    audioCtx.currentTime+.01
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    audioCtx.currentTime+.09
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime+.1);
+
+}
+
+
+/* Lily sound */
+
+function lilySound(){
+
+  initAudio();
+
+  const now=audioCtx.currentTime;
+
+  [880,1174,1568].forEach((freq,index)=>{
+
+    const osc=
+      audioCtx.createOscillator();
+
+    const gain=
+      audioCtx.createGain();
+
+    osc.type="sine";
+
+    osc.frequency.value=freq;
+
+    gain.gain.setValueAtTime(
+      .0001,
+      now+index*.035
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .10,
+      now+index*.035+.015
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      now+index*.035+.22
+    );
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now+index*.035);
+    osc.stop(now+index*.035+.23);
+
+  });
+
+}
+
+
+/* MEOW */
+
+function meowSound(){
+
+  initAudio();
+
+  const now=audioCtx.currentTime;
+
+  const osc=
+    audioCtx.createOscillator();
+
+  const gain=
+    audioCtx.createGain();
+
+  osc.type="sawtooth";
+
+  osc.frequency.setValueAtTime(
+    480,
+    now
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    850,
+    now+.13
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    350,
+    now+.42
+  );
+
+  gain.gain.setValueAtTime(
+    .0001,
+    now
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .16,
+    now+.03
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .0001,
+    now+.43
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start(now);
+  osc.stop(now+.45);
+
+}
+
+
+/* Success sound */
+
+function successSound(){
+
+  initAudio();
+
+  const now=audioCtx.currentTime;
+
+  [523,659,784,1047].forEach((freq,index)=>{
+
+    const osc=
+      audioCtx.createOscillator();
+
+    const gain=
+      audioCtx.createGain();
+
+    osc.type="sine";
+
+    osc.frequency.value=freq;
+
+    gain.gain.setValueAtTime(
+      .0001,
+      now+index*.09
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .13,
+      now+index*.09+.02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .0001,
+      now+index*.09+.25
+    );
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(now+index*.09);
+    osc.stop(now+index*.09+.27);
+
+  });
+
+}
+
+
+/* =====================================================
+CLICK PARTICLES
+===================================================== */
+
+function particles(x,y,emoji){
+
+  for(let n=0;n<7;n++){
+
+    const p=
+      document.createElement("span");
+
+    p.className="click-particle";
+
+    p.textContent=emoji;
+
+    p.style.left=x+"px";
+    p.style.top=y+"px";
+
+    p.style.setProperty(
+      "--x",
+      (Math.random()*140-70)
+    );
+
+    p.style.setProperty(
+      "--y",
+      (Math.random()*140-70)
+    );
+
+    document.body.appendChild(p);
+
+    setTimeout(
+      ()=>p.remove(),
+      800
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+GLOBAL BUTTON SOUND
+===================================================== */
+
+document.addEventListener("click",function(e){
+
+  if(e.target.tagName==="BUTTON"){
+
+    /*
+      Don't play generic click over the special
+      game sounds.
+    */
+
+    if(
+      !e.target.classList.contains("target")
+    ){
+
+      buttonSound();
+
+    }
+
+    particles(
+      e.clientX,
+      e.clientY,
+      ["✨","💗","🌸"][Math.floor(Math.random()*3)]
+    );
+
+  }
+
+});
+
+
+/* =====================================================
+ENTER
+===================================================== */
 
 function enterSite(){
-  document.getElementById("intro").classList.add("hide");
-  document.querySelectorAll(".reveal").forEach((x,n)=>setTimeout(()=>x.classList.add("on"),150+n*120));
+
+  initAudio();
+
+  document
+    .getElementById("intro")
+    .classList.add("hide");
+
+  document
+    .querySelectorAll(".reveal")
+    .forEach((x,n)=>{
+
+      setTimeout(
+        ()=>x.classList.add("on"),
+        150+n*120
+      );
+
+    });
+
   makeFlowers();
+
 }
+
+
+/* =====================================================
+FLOWER RAIN
+===================================================== */
+
 function makeFlowers(){
-  const box=document.getElementById("flowers");
+
+  const box=
+    document.getElementById("flowers");
+
   for(let n=0;n<22;n++){
-    const p=document.createElement("span");p.className="petal";p.textContent=Math.random()>.35?"🌷":"🌸";
-    p.style.left=Math.random()*100+"%";p.style.animationDuration=(5+Math.random()*7)+"s";p.style.animationDelay=(Math.random()*5)+"s";
+
+    const p=
+      document.createElement("span");
+
+    p.className="petal";
+
+    p.textContent=
+      Math.random()>.35
+      ?"🌷"
+      :"🌸";
+
+    p.style.left=
+      Math.random()*100+"%";
+
+    p.style.animationDuration=
+      (5+Math.random()*7)+"s";
+
+    p.style.animationDelay=
+      (Math.random()*5)+"s";
+
     box.appendChild(p);
+
   }
-}
-const audio=document.getElementById("audio"),musicBtn=document.getElementById("music");
-async function toggleMusic(){
-  if(audio.paused){
-    try{await audio.play();musicBtn.textContent="⏸";showToast("music mode: ON 🎶");}
-    catch(e){showToast("Add your legally obtained music.mp3 to the repo first 🎵");}
-  }else{audio.pause();musicBtn.textContent="▶";showToast("music mode: OFF");}
-}
-function showToast(t){
-  const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");
-  clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),2400);
+
 }
 
-let score=0,playing=false;
+
+/* =====================================================
+PAGE BOOK SYSTEM
+===================================================== */
+
+let currentPage=1;
+
+const totalPages=3;
+
+
+function updatePage(){
+
+  for(let n=1;n<=totalPages;n++){
+
+    document
+      .getElementById("page"+n)
+      .classList.toggle(
+        "active",
+        n===currentPage
+      );
+
+  }
+
+  document.getElementById("pageNumber").textContent=
+    `Page ${currentPage} / ${totalPages}`;
+
+  document.getElementById("prevBtn").disabled=
+    currentPage===1;
+
+  document.getElementById("nextBtn").disabled=
+    currentPage===totalPages;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function goPage(page){
+
+  if(page<1 || page>totalPages)
+    return;
+
+  currentPage=page;
+
+  updatePage();
+
+}
+
+
+function nextPage(){
+
+  if(currentPage<totalPages){
+
+    currentPage++;
+
+    updatePage();
+
+  }
+
+}
+
+
+function previousPage(){
+
+  if(currentPage>1){
+
+    currentPage--;
+
+    updatePage();
+
+  }
+
+}
+
+
+/* =====================================================
+GAME
+===================================================== */
+
+let score=0;
+let playing=false;
+let gameTimer=null;
+
+
 function startGame(){
-  score=0;playing=true;document.getElementById("score").textContent=0;document.getElementById("gameHint").style.display="none";
+
+  initAudio();
+
+  score=0;
+
+  playing=true;
+
+  document
+    .getElementById("score")
+    .textContent=0;
+
+  document
+    .getElementById("gameHint")
+    .style.display="none";
+
+  clearTimeout(gameTimer);
+
   spawn();
-}
-function spawn(){
-  if(!playing)return;
-  const area=document.getElementById("gameArea");
-  area.querySelectorAll(".target").forEach(x=>x.remove());
-  const b=document.createElement("button");b.className="target";b.textContent="🌷";b.setAttribute("aria-label","catch lily");
-  b.style.left=Math.random()*82+5+"%";b.style.top=Math.random()*78+8+"%";
-  b.onclick=()=>{
-    score++;document.getElementById("score").textContent=score;
-    if(score>=10){playing=false;area.querySelectorAll(".target").forEach(x=>x.remove());document.getElementById("winModal").classList.add("show");}
-    else spawn();
-  };
-  area.appendChild(b);
-  setTimeout(()=>{if(b.isConnected){b.remove();spawn()}},900);
-}
-function unlockMessage(){
-  document.getElementById("winModal").classList.remove("show");
-  const m=document.getElementById("message");m.classList.remove("locked");m.classList.add("unlocked");
-  m.scrollIntoView({behavior:"smooth",block:"center"});
-  showToast("Message unlocked 💌🌷");
+
 }
 
-// ---------------- YouTube music ----------------
-// Replace YOUR_VIDEO_ID with the ID from the YouTube video you want to embed.
-const YT_VIDEO_ID = "iZrWx0f2Qkw";
+
+function spawn(){
+
+  if(!playing)
+    return;
+
+  const area=
+    document.getElementById("gameArea");
+
+  area
+    .querySelectorAll(".target")
+    .forEach(x=>x.remove());
+
+
+  /*
+    70% chance lily
+    30% chance cat
+  */
+
+  const isCat=
+    Math.random()<.30;
+
+  const b=
+    document.createElement("button");
+
+  b.className=
+    "target"+(isCat?" cat":"");
+
+  b.textContent=
+    isCat?"🐈":"🌷";
+
+  b.setAttribute(
+    "aria-label",
+    isCat?"cat":"lily"
+  );
+
+  b.style.left=
+    Math.random()*82+5+"%";
+
+  b.style.top=
+    Math.random()*78+8+"%";
+
+
+  b.onclick=function(e){
+
+    e.stopPropagation();
+
+    const rect=
+      b.getBoundingClientRect();
+
+    particles(
+      rect.left+rect.width/2,
+      rect.top+rect.height/2,
+      isCat?"🐾":"🌷"
+    );
+
+
+    if(isCat){
+
+      /*
+        CAT = MEOW
+      */
+
+      meowSound();
+
+      showToast(
+        "MEOWWW 😭🐈 AYE DOES NOT COUNT!"
+      );
+
+      b.animate(
+        [
+          {transform:"scale(1)"},
+          {transform:"scale(1.35) rotate(12deg)"},
+          {transform:"scale(0)"}
+        ],
+        {duration:350}
+      );
+
+      setTimeout(
+        ()=>spawn(),
+        250
+      );
+
+      return;
+
+    }
+
+
+    /*
+      LILY = SCORE
+    */
+
+    lilySound();
+
+    score++;
+
+    document
+      .getElementById("score")
+      .textContent=score;
+
+    b.animate(
+      [
+        {transform:"scale(1)"},
+        {transform:"scale(1.5)"},
+        {transform:"scale(0)"}
+      ],
+      {duration:280}
+    );
+
+
+    if(score>=10){
+
+      playing=false;
+
+      clearTimeout(gameTimer);
+
+      area
+        .querySelectorAll(".target")
+        .forEach(x=>x.remove());
+
+      successSound();
+
+      setTimeout(()=>{
+
+        document
+          .getElementById("winModal")
+          .classList.add("show");
+
+      },300);
+
+    }else{
+
+      setTimeout(
+        ()=>spawn(),
+        180
+      );
+
+    }
+
+  };
+
+
+  area.appendChild(b);
+
+
+  gameTimer=setTimeout(()=>{
+
+    if(b.isConnected){
+
+      b.remove();
+
+      spawn();
+
+    }
+
+  },850);
+
+}
+
+
+/* =====================================================
+UNLOCK MESSAGE
+===================================================== */
+
+function unlockMessage(){
+
+  successSound();
+
+  document
+    .getElementById("winModal")
+    .classList.remove("show");
+
+  const m=
+    document.getElementById("message");
+
+  m.classList.remove("locked");
+
+  m.classList.add("unlocked");
+
+  goPage(3);
+
+  setTimeout(()=>{
+
+    m.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+  },500);
+
+  showToast(
+    "Message unlocked 💌🌷"
+  );
+
+}
+
+
+/* =====================================================
+YOUTUBE MUSIC
+===================================================== */
+
+const YT_VIDEO_ID=
+  "iZrWx0f2Qkw";
+
 let player;
-let ytReady = false;
+let ytReady=false;
+
 
 function onYouTubeIframeAPIReady(){
-  player = new YT.Player("ytplayer", {
-    height:"200", width:"200", videoId:YT_VIDEO_ID,
-    playerVars:{playsinline:1, controls:0, loop:1, playlist:YT_VIDEO_ID, rel:0},
-    events:{onReady:()=>{ytReady=true;}}
-  });
+
+  player=
+    new YT.Player(
+      "ytplayer",
+      {
+
+        height:"200",
+        width:"200",
+
+        videoId:YT_VIDEO_ID,
+
+        playerVars:{
+          playsinline:1,
+          controls:0,
+          loop:1,
+          playlist:YT_VIDEO_ID,
+          rel:0
+        },
+
+        events:{
+          onReady:()=>{
+            ytReady=true;
+          }
+        }
+
+      }
+    );
+
 }
+
+
 (function loadYT(){
-  const tag=document.createElement("script");
-  tag.src="https://www.youtube.com/iframe_api";
+
+  const tag=
+    document.createElement("script");
+
+  tag.src=
+    "https://www.youtube.com/iframe_api";
+
   document.head.appendChild(tag);
+
 })();
 
+
 function toggleMusic(){
-  if(!ytReady || YT_VIDEO_ID==="YOUR_VIDEO_ID"){
-    showToast("Paste your YouTube VIDEO ID into YT_VIDEO_ID first 🎵");
+
+  initAudio();
+
+  if(
+    !ytReady ||
+    YT_VIDEO_ID==="YOUR_VIDEO_ID"
+  ){
+
+    showToast(
+      "Paste your YouTube VIDEO ID into YT_VIDEO_ID first 🎵"
+    );
+
     return;
+
   }
-  const state=player.getPlayerState();
-  if(state===1){player.pauseVideo();musicBtn.textContent="▶";}
-  else {player.playVideo();musicBtn.textContent="⏸";showToast("music mode: ON 🎶");}
+
+  const state=
+    player.getPlayerState();
+
+  if(state===1){
+
+    player.pauseVideo();
+
+    document
+      .getElementById("music")
+      .textContent="▶";
+
+  }else{
+
+    player.playVideo();
+
+    document
+      .getElementById("music")
+      .textContent="⏸";
+
+    showToast(
+      "music mode: ON 🎶"
+    );
+
+  }
+
 }
 
+
+/* =====================================================
+BRAINROT
+===================================================== */
+
 function brainrot(text){
-  const b=document.getElementById("brainrotBox");
+
+  buttonSound();
+
+  const b=
+    document.getElementById("brainrotBox");
+
   b.textContent=text;
-  b.animate([{transform:"scale(.96) rotate(-1deg)"},{transform:"scale(1.02) rotate(1deg)"},{transform:"scale(1)"}],{duration:450});
+
+  b.animate(
+    [
+      {
+        transform:"scale(.96) rotate(-1deg)"
+      },
+      {
+        transform:"scale(1.02) rotate(1deg)"
+      },
+      {
+        transform:"scale(1)"
+      }
+    ],
+    {
+      duration:450
+    }
+  );
+
 }
+
+
+/* =====================================================
+LOOT
+===================================================== */
+
 function openLoot(){
-  const x=document.getElementById("loot");x.style.display="grid";
-  brainrot("LOOT BOX OPENED. Absolutely life-changing.");
+
+  successSound();
+
+  const x=
+    document.getElementById("loot");
+
+  x.style.display="grid";
+
+  brainrot(
+    "LOOT BOX OPENED. Absolutely life-changing."
+  );
+
 }
+
+
+/* =====================================================
+QUIZ
+===================================================== */
+
 const quizData=[
- {q:"Qaseh's birthday?", a:["24/9 🎂","31/2 🗿","404 😭"], c:0},
- {q:"Dahlia's nickname?", a:["Aye 🐈","CEO 🧑‍💼","Mrs. Worldwide"], c:0},
- {q:"The correct flower vibe?", a:["🌷🌷🌷","🥦🥦🥦","🧱🧱🧱"], c:0}
+
+  {
+    q:"Qaseh's birthday?",
+    a:[
+      "24/9 🎂",
+      "31/2 🗿",
+      "404 😭"
+    ],
+    c:0
+  },
+
+  {
+    q:"Dahlia's nickname?",
+    a:[
+      "Aye 🐈",
+      "CEO 🧑‍💼",
+      "Mrs. Worldwide"
+    ],
+    c:0
+  },
+
+  {
+    q:"The correct flower vibe?",
+    a:[
+      "🌷🌷🌷",
+      "🥦🥦🥦",
+      "🧱🧱🧱"
+    ],
+    c:0
+  }
+
 ];
+
+
 let qi=0;
+
+
 function renderQuiz(){
-  const x=document.getElementById("quiz"),d=quizData[qi];
-  x.innerHTML=`<h3>${d.q}</h3>`+d.a.map((a,n)=>`<button class="cta ${n===d.c?'secondary':''}" onclick="answerQuiz(${n})">${a}</button>`).join("");
+
+  const x=
+    document.getElementById("quiz");
+
+  const d=
+    quizData[qi];
+
+  x.innerHTML=
+    `<h3>${d.q}</h3>`+
+
+    d.a
+      .map(
+        (a,n)=>
+          `<button
+             class="cta ${n===d.c?'secondary':''}"
+             onclick="answerQuiz(${n})">
+             ${a}
+           </button>`
+      )
+      .join("");
+
 }
+
+
 function answerQuiz(n){
-  const d=quizData[qi];
-  if(n===d.c){showToast("Correct. Qaseh lore knowledge: 📈📈📈");qi++;
-    if(qi>=quizData.length){document.getElementById("quiz").innerHTML="<h3>🏆 QUIZ COMPLETE</h3><p>You have officially survived the Qaseh lore exam.</p>";return;}
+
+  const d=
+    quizData[qi];
+
+  if(n===d.c){
+
+    successSound();
+
+    showToast(
+      "Correct. Qaseh lore knowledge: 📈📈📈"
+    );
+
+    qi++;
+
+    if(qi>=quizData.length){
+
+      document
+        .getElementById("quiz")
+        .innerHTML=
+        `
+        <h3>🏆 QUIZ COMPLETE</h3>
+
+        <p>
+        You have officially survived
+        the Qaseh lore exam.
+        </p>
+
+        <div style="font-size:45px">
+        🌷🐈🎂💗✨
+        </div>
+        `;
+
+      return;
+
+    }
+
     renderQuiz();
-  }else showToast("SALAH 😭 Cuba tengok Qaseh wikipedia");
+
+  }else{
+
+    meowSound();
+
+    showToast(
+      "SALAH 😭 Cuba tengok Qaseh wikipedia"
+    );
+
+  }
+
 }
+
+
 renderQuiz();
 
 </script>
+
 </body>
 </html>
