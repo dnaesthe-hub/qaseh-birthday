@@ -1028,18 +1028,24 @@ PAGE 2
       <div class="grid">
 
         <button class="cta"
-                onclick="brainrot('Dahlia has entered the chat. 🐈')">
+        onclick="showBrainrotImage(
+          'Dahlia has entered the chat. 🐈',
+          'IMG_6971.jpeg'
+        )">
 
-          🐈 summon Aye
+  🐈 summon Aye
 
-        </button>
+</button>
 
-        <button class="cta"
-                onclick="brainrot('SYSTEM MESSAGE: Qaseh is too sweet. Please nerf.')">
+<button class="cta"
+        onclick="showBrainrotImage(
+          'SYSTEM MESSAGE: Qaseh is too sweet. Please nerf. 🍬',
+          'f363d71a-5e0f-4794-9b2f-9eee3738033e.jpeg'
+        )">
 
-          🍬 sweetness scan
+  🍬 sweetness scan
 
-        </button>
+</button>
 
         <button class="cta"
                 onclick="brainrot('100% certified yapper detected. Respectfully.')">
@@ -2528,6 +2534,43 @@ musicButton.addEventListener(
 BRAINROT
 ===================================================== */
 
+  function showBrainrotImage(text,image){
+
+  buttonSound();
+
+  const b =
+    document.getElementById("brainrotBox");
+
+  b.innerHTML = `
+    <b>${text}</b>
+
+    <br><br>
+
+    <img
+      src="${image}"
+      alt="Qaseh OS result"
+      class="memory-photo"
+    >
+  `;
+
+  b.animate(
+    [
+      {
+        transform:"scale(.96) rotate(-1deg)"
+      },
+      {
+        transform:"scale(1.02) rotate(1deg)"
+      },
+      {
+        transform:"scale(1)"
+      }
+    ],
+    {
+      duration:450
+    }
+  );
+
+}
 function brainrot(text){
 
   buttonSound();
